@@ -7,7 +7,7 @@ public class Hello {
 		System.out.println("메롱");
 		//배고파
 		System.out.println("돈까스");
-		//local repository반영..
+		//local repository반영...
 	}
 
 }
