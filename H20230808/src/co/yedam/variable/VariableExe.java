@@ -1,34 +1,32 @@
 package co.yedam.variable;
-import java.util.Scanner;
 
 public class VariableExe {
 
 	public static void main(String[] args) {
 		//변수선언 및 초기화
-		Scanner sc = new Scanner(System.in);
+		byte num1 = 10;
+		byte num2 = 20;
+//		byte result = num1+num2; 
+//		자바에서는 연산하는 순간 자료형이 int가 되어버림
+		int result = num1+num2;
 		
-		
-		
-		System.out.println("num1 입력");
-		int num1 = sc.nextInt();
-		System.out.println("num2 입력");
-		int num2 = sc.nextInt();
-		
-		System.out.println("1:더하기, 2:빼기, 3:곱하기, 4:나누기");
-		int sel = sc.nextInt();
-		int result = 0;
-		switch(sel) {
-			case 1: result = num1 + num2; break;
-			case 2: result = num1 - num2; break; 
-			case 3: result = num1 * num2; break;
-			case 4: result = num1 / num2; break;
-			default : System.out.println("잘못입력함");
-		}
-		
-		
-		System.out.print("결과 : ");
 		System.out.println(result);
 		
+		int i1 = 100; byte b4 = 10;
+		result = i1+b4;
+		
+		System.out.println(result);
+		
+		//실수 타입
+		//float, double
+		double dbl1 = 10.23332;
+		double dbl2 = 20;
+		System.out.println(dbl1+dbl2);
+		
+		float f1 = 10.1f;
+		float f2 = 10.2f;
+		
+		System.out.println("실수 연산 : "+f1+f2);
 	}
 
 }
