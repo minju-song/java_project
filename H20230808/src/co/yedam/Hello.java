@@ -9,6 +9,9 @@ public class Hello {
 		System.out.println("돈까스");
 		//local repository반영...
 		//11시 40분
+		for(int i=0; i<2; i++) {
+			System.out.println(i);
+		}
 	}
 
 }
