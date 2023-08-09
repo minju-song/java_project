@@ -3,11 +3,16 @@ import java.util.*;
 
 class Person {
 	int age;
+	
+	void run () {
+		System.out.println("run");
+	}
 }
 
 class Student extends Person{
 	String name;
 	int score;
+
 	
 	Student(String name, int score) {
 		this.name = name;
@@ -15,6 +20,10 @@ class Student extends Person{
 	}
 	Student(int score) {
 		this.score = score;
+	}
+	
+	void run() {
+		System.out.println("뛰기 싫음");
 	}
 }
 

@@ -4,15 +4,18 @@ import java.util.*;
 public class practice {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
-		String str[] = new String[5];
-		for(int i=0; i<str.length; i++) {
-			str[i] = sc.next();
+		char arr[][] = new char[5][15];
+		for(int i=0; i<5; i++) {
+				String a = sc.nextLine();
+				arr[i] = a.toCharArray();
+			
 		}
 		
-		char cha[][] = new char[5][];
-		for(int i=0; i<str.length; i++) {
-			cha[i]= str[i].toCharArray();
+		for(int i=0; i<arr.length; i++) {
+			for(int j=0; j<arr[0].length; j++) {
+				System.out.print(arr[i][j]);
+			}
+			System.out.println();
 		}
 		
 		
