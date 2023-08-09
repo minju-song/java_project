@@ -39,7 +39,13 @@ public class VariableExe2 {
 				
 			}
 			else if(menu == 3) {
-				System.out.println("잔고>> "+balance+"원");
+				if(balance<=0) {
+					System.out.println("잔고없음");
+				}
+				else {
+					
+					System.out.println("잔고>> "+balance+"원");
+				}
 			}
 			else if(menu == 4) break;
 		}
