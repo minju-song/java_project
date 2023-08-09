@@ -4,7 +4,7 @@ public class ConditionExe {
 	public static void main(String[] args) {
 		//임의의 수 1~3
 		
-		int ran = (int)(Math.random()*4)+65;
+		char ran = (char)((Math.random()*4)+65);
 		
 		System.out.println(ran);
 	
