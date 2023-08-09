@@ -12,7 +12,7 @@ public class StudentApp {
 		boolean run =true;
 		while(run) {
 			System.out.println("-----------------------------");
-			System.out.println("1.등록 | 2.조회 | 3.목록 | 4.종료");
+			System.out.println("1.등록   | 2.조회 | 3.목록 | 4.종료");
 			System.out.println("-----------------------------");
 			System.out.print("선택>> ");
 			sel = sc.nextInt();
