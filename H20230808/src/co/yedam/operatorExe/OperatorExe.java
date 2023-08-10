@@ -14,7 +14,7 @@ public class OperatorExe {
 		System.out.println(result);
 		System.out.println(y);
 		
-		String str = (x>10) ? "x는 10이상" : "x는 10미만";
+		String str = (x>10) ? "x는 10이상" : "x는 10미만 ";
 		System.out.println(str);
 	}
 
