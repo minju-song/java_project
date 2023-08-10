@@ -5,11 +5,9 @@ public class practice {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		String msg = "안녕";
-		msg = "하세요";
+		String[] data = sc.nextLine().split(" ");
+		System.out.println(data[0]);
 		
-		
-		
-		
+		System.out.println(data[1]);
 	}
 }
