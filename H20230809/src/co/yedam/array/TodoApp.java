@@ -2,9 +2,11 @@ package co.yedam.array;
 import java.util.*;
 public class TodoApp {
 	static Scanner sc = new Scanner(System.in);
-	static Todo[] arr = new Todo[20];
-	static int idx=0;
+	static Todo[] arr = new Todo[20];  //Todo 객체 배열 생성
+	static int idx=0; //배열에 들어간 Todo 갯수
+	static boolean ck = false; //check
 
+	//메뉴 프린트 메소드
 	public static void printManual() {
 		System.out.println("---------------------------------------");
 		System.out.println("| 1.등록 | 2.완료 | 3.조회 | 4.미완료 | 5.종료 |");
@@ -12,44 +14,57 @@ public class TodoApp {
 		System.out.print("선택> ");
 	}
 	
+	//1번 등록 메소드
 	public static void addTodo() {
-		System.out.printf("[%d] 번호, 할일, 날짜를 공백으로 구분하여 입력>> ",idx);
-		int num = sc.nextInt();
-		String to = sc.next();
-		String day = sc.next();
-		arr[idx] = new Todo(num, to, day);
-		idx++;
+		System.out.printf("[%d] 번호, 할일, 날짜(MMDD)를 공백으로 구분하여 입력>> ",idx);
+		int num = sc.nextInt(); //Todo.no
+		String to = sc.next(); //Todo.todo
+		String day = sc.next(); //Todo.dueDate
+		arr[idx] = new Todo(num, to, day); //arr배열에 Todo객체 생성
+		idx++; //인덱스 증가
 		System.out.println(day+"의 할일을 등록하였습니다.");
 	}
 	
+	//2번 완료 처리 메소드
 	public static void complete() {
+		ck = false;
 		System.out.print("완료시킬 To do의 번호를 입력하세요>> ");
-		String [] data = sc.nextLine().split(" ");
+		String [] data = sc.nextLine().split(" "); //여러 번호가 들어올 경우 공백으로 구분하여 처리
 		for(int i=0; i<data.length; i++) {
 			int s = Integer.parseInt(data[i]);
 			for(int j=0; j<arr.length; j++) {
 				if(arr[j]!=null && s == arr[j].no) {
-					System.out.print(arr[j].no+"번 "); arr[j].done = true;
+					System.out.print(arr[j].no+"번 "); arr[j].done = true; //입력한 번호에 해당하는 작업 true
+					ck = true;
 				}
 			}
+			if(ck == false) {
+				System.out.println(data[i]+"번은 없는 번호입니다.");
+			}
+			else System.out.println(" 완료");
 		}
-		System.out.println("완료");
 	}
 	
+	//3번 날짜를 검색하여 할 일 조회
 	public static void search() {
+		ck = false;
 		System.out.print("조회할 날짜 입력>> ");
 		String s = sc.nextLine();
 		System.out.printf("%s>> ", s);
 		for(Todo e : arr) {
 			if ( e != null && s.equals(e.dueDate)) {
 				System.out.print(e.todo+" ");
+				ck = true;
 			}
 		}
+		if(ck == false) System.out.print("할 일이 없습니다.");
 		System.out.println();
 	}
 	
+	//4번 미완료된 할일 출력 (Todo.no 오름차순)
 	public static void print() {
 		int len = arr.length - 1;
+		//오름차순으로 배열 정렬
 		for(int i=0; i<len; i++) {
 			for(int j=0; j<len; j++) {
 				if(arr[j] != null &&  arr[j+1]!=null && arr[j].no > arr[j+1].no) {
@@ -60,6 +75,7 @@ public class TodoApp {
 				}
 			}
 		}
+		//정렬된 배열에서 done이 false인 데이터 출력
 		for(int i=0; i<arr.length; i++) {
 			if (arr[i] != null && arr[i].done == false) {				
 				System.out.println(arr[i].no + ", "+arr[i].todo);
