@@ -32,8 +32,7 @@ public class ScoreApp {
 	public static void addScore() {
 		for(int i=0; i<scores.length; i++) {
 			System.out.printf("[%d]이름 점수> ", i);
-			String []data = new String[2];
-			data = sc.nextLine().split(" ");
+			String []data = sc.nextLine().split(" ");
 			scores[i].name = data[0];
 			scores[i].score = Integer.parseInt(data[1]);
 		}
