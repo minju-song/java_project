@@ -51,8 +51,8 @@ public class ScoreApp {
 			sum += scores[i].score;
 			if(max.score<scores[i].score) max = scores[i];
 		}
-		System.out.printf("최고 점수: %d (%s)\n"+max.score, max.name);
-		System.out.println("평균 점수: "+(double)(sum/scores.length));
+		System.out.println("최고 점수: "+max.score+"점 ("+ max.name+")");
+		System.out.println("평균 점수: "+((double)sum)/scores.length);
 	}
 	
 	
