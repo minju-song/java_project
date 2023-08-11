@@ -64,6 +64,7 @@ public class ScoreApp {
 		while(run) {
 			printManual();
 			menu = sc.nextInt();
+			sc.nextLine();
 			switch(menu) {
 			case 1:
 				stdNum();
