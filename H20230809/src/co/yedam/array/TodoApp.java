@@ -8,9 +8,9 @@ public class TodoApp {
 
 	//메뉴 프린트 메소드
 	public static void printManual() {
-		System.out.println("---------------------------------------");
+		System.out.println("-----------------------------------------");
 		System.out.println("| 1.등록 | 2.완료 | 3.조회 | 4.미완료 | 5.종료 |");
-		System.out.println("---------------------------------------");
+		System.out.println("-----------------------------------------");
 		System.out.print("선택> ");
 	}
 	
@@ -33,7 +33,7 @@ public class TodoApp {
 		for(int i=0; i<data.length; i++) {
 			int s = Integer.parseInt(data[i]);
 			for(int j=0; j<arr.length; j++) {
-				if(arr[j]!=null && s == arr[j].no) {
+				if(arr[j]!=null && s == arr[j].no && arr[j].done == false) {
 					System.out.print(arr[j].no+"번 "); arr[j].done = true; //입력한 번호에 해당하는 작업 true
 					ck = true;
 				}
@@ -41,7 +41,8 @@ public class TodoApp {
 			if(ck == false) {
 				System.out.println(data[i]+"번은 없는 번호입니다.");
 			}
-			else System.out.println(" 완료");
+			else System.out.println("완료");
+			ck = false;
 		}
 	}
 	
@@ -78,7 +79,7 @@ public class TodoApp {
 		//정렬된 배열에서 done이 false인 데이터 출력
 		for(int i=0; i<arr.length; i++) {
 			if (arr[i] != null && arr[i].done == false) {				
-				System.out.println(arr[i].no + ", "+arr[i].todo);
+				System.out.println(arr[i].no + ". "+arr[i].todo);
 			}
 		}
 		
