@@ -1,32 +1,45 @@
 package co.yedam.prac;
 import java.util.*;
 
+class Book {
+	String title;
+	String author;
+	
+	void setTitle(String t) {
+		this.title = t;
+	}
+	void setAuthor(String a) {
+		this.author = a;
+	}
+	String getTitle() {
+		return this.title;
+	}
+	String getAuthor() {
+		return this.author;
+	}
+	void print() {
+		System.out.println("("+this.title+", "+this.author+")");
+	}
+}
+
+
 public class Practice2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		Book arr[] = new Book[2];
 		
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		String [][] str = new String[n][m];
-		String [] data = new String[m];
-		
-		for(int i=0; i<n; i++) {
-				data = sc.nextLine().split("");
-			for(int j=0; j<data.length; j++) {
-				str[i][j] = data[j];
-			}
+		for(int i=0; i<arr.length; i++) {
+			arr[i] = new Book();
+			System.out.print("책 제목>> ");
+			arr[i].setTitle(sc.nextLine());
+			System.out.print("작가 이름>> ");
+			arr[i].setAuthor(sc.nextLine());
 		}
 		
-		int count = 0;
-		boolean ck = false;
-
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<m; j++) {
-				if (str[i][j].equals("X")) ck = true;
-			}
-			if (ck = false) count++;
-			ck = false;
+		for(int i=0; i<arr.length; i++) {
+			arr[i].print();
 		}
+		
 		
 		
 

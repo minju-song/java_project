@@ -25,15 +25,15 @@ public class FriendApp {
 			}
 		}
 	}
-	
-	
-	void list() {
-		for(int i=0; i<friends.length; i++) {
-			if(friends[i]!=null) {
-				System.out.println(friends[i].toString()\);
-			}
-		}
-	}
+//	
+//	
+//	void list() {
+//		for(int i=0; i<friends.length; i++) {
+//			if(friends[i]!=null) {
+//				System.out.println(friends[i].toString()\);
+//			}
+//		}
+//	}
 	
 	
 	static void start() {
