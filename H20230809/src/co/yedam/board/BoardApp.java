@@ -8,29 +8,32 @@ public class BoardApp {
 	
 	void start() {
 		boolean run = true;
+		
 		while(run) {
 			System.out.println("------------------------------------------------");
 			System.out.println("| 1.등록 | 2.목록 | 3.상세보기 | 4.수정 | 5.삭제 | 6.종료 |");
 			System.out.println("------------------------------------------------");
 			System.out.print("선택>> ");
+			
 			int sel = sc.nextInt();
 			sc.nextLine();
+			
 			switch(sel) {
-			case 1:
-				add();
-				break;
-			case 2:
-				list();
-				break;
-			case 3:
-				search();
-				break;
-			case 4:
-				modify();
-				break;
-			case 5:
-				delete();
-				break;
+				case 1:
+					add();
+					break;
+				case 2:
+					list();
+					break;
+				case 3:
+					search();
+					break;
+				case 4:
+					modify();
+					break;
+				case 5:
+					delete();
+					break;
 			}
 			
 		}
@@ -53,11 +56,37 @@ public class BoardApp {
 	
 	void list() {
 		System.out.println("글번호\t제목\t\t작성자");
+		int page = arr.length % 5;
+		if(page == 0) {
+			page = arr.length / 5;
+		} else {
+			page = (arr.length / 5) + 1;
+		}
+		
+//		for(int i = 1; i < page; i++) {
+//			for(int j = 0; j < 5; j++) {
+//				if(arr[j]!=null) {
+//					System.out.println(arr[j].getNo()+"\t\t"+arr[j].getTitle()+"\t\t"+arr[j].getAuthor());
+//				} else {
+//					System.out.println("없음");
+//				}
+//			}
+//		}
+		
+		int num = 0;
+//		for(int i = 0; i < arr.length/5+1; i++) {
+//			for(int j=0; j<5; j++) {
+//				if (arr[num]!=null) {
+//					System.out.println(arr[i].getNo()+"\t\t"+arr[i].getTitle()+"\t\t"+arr[i].getAuthor());
+//					num++;
+//				}
+//			}
 		for(int i=0; i<arr.length; i++) {
 			if(arr[i]!=null) {
 				System.out.println(arr[i].getNo()+"\t\t"+arr[i].getTitle()+"\t\t"+arr[i].getAuthor());
 			}
 		}
+		
 	}
 	
 	void search() {
@@ -65,7 +94,7 @@ public class BoardApp {
 		int sel = sc.nextInt();
 		sc.nextLine();
 		if(arr[sel-1] != null) {			
-			System.out.println("글번호: "+arr[sel-1].getNo()+"\t\t작성자: "+arr[sel-1].getAuthor());
+			System.out.println("글제목: "+arr[sel-1].getTitle()+"\t\t작성자: "+arr[sel-1].getAuthor());
 			System.out.println("글내용: "+arr[sel-1].getContent());
 		}
 		else System.out.println("없는 글입니다.");
@@ -89,15 +118,20 @@ public class BoardApp {
 		System.out.print("삭제할 글번호>> ");
 		int sel = sc.nextInt();
 		sc.nextLine();
-		if(arr[sel-1]!=null) {
-			arr[sel-1] = null;
+		int position = sel-1;
+		if(arr[position]!=null) {
+			arr[position] = null;
 		}
-		int len = arr.length-1;
-//		for(int i=0; i<len; i++) {
-//			for(int j=0; j<len; j++) {
-//				if(arr[j]!=null && arr[j+1]!= null && arr[j])
-//			}
-//		}
+		for(int i=position; i<arr.length-1; i++) {
+			if(arr[i+1]!=null) {				
+				arr[i] = arr[i+1];
+				arr[i].setNo(i+1);
+			}
+			if(i == arr.length-2) {
+				arr[i+1] = null;                                                                                                      
+			}
+		}                       
+		
 		
 		System.out.println(sel+"번 글이 삭제되었습니다.");
 	}
