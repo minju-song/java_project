@@ -7,14 +7,22 @@ public class FriendApp {
 	int idx = 0;
 	public void start() {
 		boolean run = true;
+		int menu = -1;
 		while(run) {	
 			System.out.println();
 			System.out.println("-------------[연락처]-------------");
 			System.out.println("1.추가  2.조회  3.수정  4.삭제  5.종료");
 			System.out.println("---------------------------------");
 			System.out.print(">> ");
-			int menu = sc.nextInt();
-			sc.nextLine();
+			try {				
+				menu = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("메뉴 다시 선택하세요.");
+				continue;
+			} finally {
+				sc.nextLine();
+			}
+		
 			switch(menu) {
 			case 1:
 				add();
@@ -33,8 +41,9 @@ public class FriendApp {
 				run = false;
 				break;
 			default:
-					System.out.println("잘못 선택하였습니다.");
+				System.out.println("잘못 선택하였습니다.");
 			}
+		
 		}
 	}
 	
@@ -44,10 +53,22 @@ public class FriendApp {
 	}
 	
 	private void add() {
-		System.out.println("1.회사친구  2.학교친구  3.기타");
-		System.out.print(">> ");
-		int select = sc.nextInt();
-		sc.nextLine();
+		boolean run = true;
+		int select = -1;
+		while(run) {			
+			try {	
+				System.out.println("1.회사친구  2.학교친구  3.기타");
+				System.out.print(">> ");
+				select = sc.nextInt();
+				break;
+			}
+			catch (InputMismatchException e){
+				System.out.println("다시 선택해주세요.");
+				continue;
+			} finally {
+				sc.nextLine();
+			}
+		}
 		String name = printString("이름입력");
 		String phone = printString("번호입력");
 		Friend friend = null;
@@ -71,6 +92,7 @@ public class FriendApp {
 			if(friends[i]==null) {
 				friends[i] = friend;
 				System.out.println(friends[i].getName()+"님이 추가되었습니다.");
+				idx++;
 				break;
 			}
 		}
@@ -78,50 +100,69 @@ public class FriendApp {
 	
 	private void search() {
 		String name = printString("찾을 친구의 이름 입력 (엔터 시 전체목록)");
-		boolean ck = false;
-		for(int i=0; i<friends.length; i++) {
-			if(friends[i]!=null && name.length()==0) {
-				System.out.println(friends[i].showInfo());
-			}
-			else if(friends[i]!=null && friends[i].getName().equals(name)) {
-				System.out.println(friends[i].showInfo());
-				ck = true;
+//		boolean ck = false;
+		try {			
+			for(int i=0; i<friends.length; i++) {
+				if(friends[i]!=null && name.length()==0) {
+//					if(i==idx) break;
+					System.out.println(friends[i].showInfo());
+					
+//					ck=true;
+				}
+				else if(friends[i].getName().equals(name)) {
+					System.out.println(friends[i].showInfo());
+					break;
+//					ck = true;
+				}
 			}
 		}
-		if(ck == false) {
+		catch (NullPointerException e) {
 			System.out.println(name+"님의 연락처가 없습니다.");
 		}
+//		if(ck == false) {
+//			System.out.println(name+"님의 연락처가 없습니다.");
+//		}
 	}
 	
 	private void modify() {
 		String name = printString("수정할 친구의 이름 입력");
-		boolean ck = false;
-		for(int i=0; i<friends.length; i++) {
-			if(friends[i]!=null && friends[i].getName().equals(name)) {
-				String newPhone = printString("수정할 번호 입력");
-				friends[i].setPhone(newPhone);
-				System.out.println(friends[i].getName()+"님이 수정되었습니다.");
-				ck = true;
+//		boolean ck = false;
+		try {			
+			for(int i=0; i<friends.length; i++) {
+				if(friends[i].getName().equals(name)) {
+					String newPhone = printString("수정할 번호 입력");
+					friends[i].setPhone(newPhone);
+					System.out.println(friends[i].getName()+"님이 수정되었습니다.");
+					break;
+//				ck = true;
+				}
 			}
-		}
-		if(ck == false) {
+		} catch (NullPointerException e) {
 			System.out.println(name+"님의 연락처가 없습니다.");
 		}
 	}
 	
 	private void delete() {
 		String name = printString("삭제할 친구의 이름 입력");
-		boolean ck = false;
-		for(int i=0; i<friends.length; i++) {
-			if(friends[i]!=null && friends[i].getName().equals(name)) {
-				friends[i] = null;
-				System.out.println(name+"님이 삭제되었습니다.");
-				ck = true;
+//		boolean ck = false;
+		try {			
+			for(int i=0; i<friends.length; i++) {
+				if(friends[i].getName().equals(name)) {
+					friends[i] = null;
+					System.out.println(name+"님이 삭제되었습니다.");
+					idx--;
+//					for(int j=i; j<friends.length-1; j++) {
+//						friends[j] = friends[j+1];
+//					}
+//					friends[friend]
+					break;
+//				ck = true;
+				}
 			}
-		}
-		if(ck == false) {
+		} catch (NullPointerException e) {			
 			System.out.println(name+"님의 연락처가 없습니다.");
 		}
+
 	}
 	
 }
