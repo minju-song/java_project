@@ -59,8 +59,9 @@ public class FriendApp {
 	private void saveFile() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		//friends 컬랙션에 값 -> 텍스트 저장
+		File file = new File("C:/Temp/friendList.txt");
 		try {
-			FileWriter fw = new FileWriter("C:/Temp/friendList.txt");
+			FileWriter fw = new FileWriter(file);
 			for(Friend fnd : friends) {
 				String line = fnd.getName()+" "+fnd.getPhone()+" "+sdf.format(fnd.getBirth());
 				fw.write(line+"\n");
@@ -82,9 +83,10 @@ public class FriendApp {
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 //		boolean run = true;
+		int idx = 0;
 		while(true) {
 			String line = sc.nextLine();
-			if(line.equals(null)) break;
+			if(idx == 3) break;
 			String data[] = line.split(" ");
 			for(Friend fnd : friends) {
 				fnd.setName(data[0]);

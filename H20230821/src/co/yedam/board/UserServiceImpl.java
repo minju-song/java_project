@@ -1,0 +1,49 @@
+package co.yedam.board;
+
+import java.io.*;
+import java.util.*;
+
+//user의 정보를 불러와 list에 저장 후 로그인
+public class UserServiceImpl implements UserService{
+	List<User> list = new ArrayList<>();
+	Scanner sc = new Scanner(System.in);
+
+	//users.txt에서 정보를 읽고 user정보를 list컬렉션에 저장
+	@Override
+	public User checkLogin() {
+		System.out.print("아이디 입력>> ");
+		String id = sc.next();
+		System.out.print("비밀번호 입력>> ");
+		String pw = sc.next();
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getId().equals(id)) {
+				if(list.get(i).getPw().equals(pw)) {
+					System.out.println();
+					System.out.print(list.get(i).getName()+"님 ");
+					return list.get(i);
+				}
+				else {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public void readFile() throws Exception {
+		File file = new File("C:/Temp/users.txt");
+		FileInputStream fis = new FileInputStream(file);
+		Reader reader = new InputStreamReader(fis);
+		BufferedReader br = new BufferedReader(reader);
+		
+		while(true) {
+			String str = br.readLine();
+			if(str == null) break;
+			String data[] = str.split(" ");
+			User user = new User(data[0],data[1],data[2]);
+			list.add(user);
+		}
+	}
+
+
+}
