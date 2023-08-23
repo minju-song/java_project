@@ -26,4 +26,6 @@ public interface BoardService {
 	public void save();
 	
 	public int total();
+	
+	public User checkWriter(int brdNo);
 }

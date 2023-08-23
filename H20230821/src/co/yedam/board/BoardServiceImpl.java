@@ -121,6 +121,12 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public User checkWriter(int brdNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

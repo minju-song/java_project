@@ -7,14 +7,20 @@ import java.util.*;
 public class UserServiceImpl implements UserService{
 	List<User> list = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);
+	
+	
+	public UserServiceImpl() {
+		try {
+			readFile();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	//users.txt에서 정보를 읽고 user정보를 list컬렉션에 저장
 	@Override
-	public User checkLogin() {
-		System.out.print("아이디 입력>> ");
-		String id = sc.next();
-		System.out.print("비밀번호 입력>> ");
-		String pw = sc.next();
+	public User checkLogin(String id, String pw) {
 		for(int i=0; i<list.size(); i++) {
 			if(list.get(i).getId().equals(id)) {
 				if(list.get(i).getPw().equals(pw)) {
