@@ -12,6 +12,7 @@ public class BoardApp {
 //	ReplyService rservice = new ReplyServiceJdbc();
 	User user = null;
 
+	int count = 0;
 	public void start() {
 		System.out.println();
 		System.out.println("=====LOGIN=====");
@@ -31,6 +32,10 @@ public class BoardApp {
 				break;
 			} else {
 				System.out.println("로그인 오류");
+				count++;
+			}
+			if (count == 3) {
+				
 			}
 
 		}
