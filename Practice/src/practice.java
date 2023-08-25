@@ -3,17 +3,30 @@ import java.util.Scanner;
 public class practice {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String str[] = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
-		
 		Scanner sc = new Scanner(System.in);
+		
 		String word = sc.next();
-		for(int i=0; i<str.length; i++) {
-			if(word.indexOf(str[i])== -1) continue;
-			word = word.replace(str[i], "*");
+		int alpha[] = new int[26];
+		
+		for(int i=0; i<word.length(); i++) {
+			alpha[word.charAt(i)-'a']++;
 		}
 		
-		System.out.println(word.length());
+		
+		boolean ck = true;
+		for(int i=0; i<alpha.length; i++) {
+			if(alpha[i]>1) {
+				int num1 = word.indexOf(alpha[i]);
+				int num2 = word.lastIndexOf(alpha[i]);
+				for(int j=num1+1; j<num2; j++) {
+					if(word.charAt(j) !=  word.charAt(i)) {
+						ck = false; break;
+					}
+				}
+			}
+		}
+		
+		System.out.println(ck);
 	}
 
 }
